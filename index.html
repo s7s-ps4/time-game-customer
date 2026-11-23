@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>كيرو بلايستيشن</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><meta name="theme-color" content="#0b1550">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="كيرو PS">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="firebase-config.js"></script>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#050a1c;color:#fff;font:15px/1.4 Tahoma,system-ui,sans-serif;max-width:520px;margin:auto;background-image:radial-gradient(90% 30% at 50% 35%,#101c5c66,transparent)}
+button,input{font:inherit;color:inherit;border:0}button{cursor:pointer}
+.hero{position:relative;height:158px;overflow:hidden;background:radial-gradient(55% 95% at 22% 45%,#1d4bff66,transparent),radial-gradient(45% 80% at 88% 15%,#8b2be266,transparent),#080c28}
+.hero:after{content:"";position:absolute;inset:auto 0 0 0;height:30px;background:linear-gradient(transparent,#050a1c)}
+.hb{position:absolute;top:12px;left:12px;width:28px;background:none;padding:0;z-index:3}.hb i{display:block;height:3px;background:#fff;border-radius:2px;margin:5px 0}
+.cons{position:absolute;left:4px;top:8px;width:128px;height:150px;filter:drop-shadow(0 0 14px #2b6bff)}
+.ttl{position:absolute;left:33%;width:42%;top:14px;text-align:center}
+.crn{position:absolute;top:-4px;left:-4px;font-size:22px;transform:rotate(-18deg)}
+#t1{font-size:46px;font-weight:900;line-height:1;text-shadow:0 3px 0 #9aa3d0,0 0 18px #6a7cff}
+#t2{font-size:30px;font-weight:900;line-height:1.1;background:linear-gradient(90deg,#d94bff,#7a4bff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px #9b3bff)}
+.tag{position:absolute;bottom:20px;left:28%;width:50%;text-align:center;font-size:13px;display:flex;align-items:center;gap:5px;z-index:2}.tag:before,.tag:after{content:"";flex:1;height:1px;background:#cfd6ff}
+.shp{position:absolute;right:10px;top:10px;display:grid;grid-template-columns:1fr 1fr;gap:2px;font-size:26px;font-weight:700;line-height:1;text-shadow:0 0 10px currentColor;width:68px;text-align:center}
+.gon{position:absolute;right:8px;top:62px;width:62px;border:2px solid #ff4dc4;border-radius:6px;padding:3px 0;text-align:center;font-weight:900;line-height:1.05;color:#ff8a3c;background:#1a0a3a;box-shadow:0 0 12px #ff4dc4aa,inset 0 0 8px #ff4dc455;font-size:15px}
+.inst{position:absolute;right:8px;bottom:26px;z-index:3;display:none;background:#1f6bffdd;border-radius:99px;padding:3px 9px;font-size:11px;width:auto;box-shadow:0 0 10px #1f6bff}
+.wrap{display:flex;gap:6px;padding:0 8px;align-items:flex-start}
+#sb{position:sticky;top:10px;width:46px;flex:none;background:linear-gradient(#0c1448,#080d30);border:1px solid #2a3aa0;border-radius:16px;padding:6px 2px;display:flex;flex-direction:column;gap:6px;box-shadow:0 0 14px #1f4bd055;min-height:420px}
+#sb button{background:none;color:#cfd6ff;font-size:9px;padding:6px 0;border-radius:12px;display:block;width:100%;line-height:1.2}#sb button i{display:block;font-style:normal;font-size:20px;filter:grayscale(1) brightness(1.5)}
+#sb button.on{background:linear-gradient(#a53bff,#5b2bd6);color:#fff;box-shadow:0 0 12px #8b2be2}.sp{flex:1}
+main{flex:1;min-width:0}
+.ofb{position:relative;display:flex;align-items:center;gap:8px;margin:6px 0 10px;padding:12px 10px;border-radius:16px;border:1px solid #7a3bff;background:linear-gradient(90deg,#2a0f6e,#1a1a6a);box-shadow:0 0 14px #7a3bff66;cursor:pointer}
+.gf{font-size:34px;margin-top:-8px}.otag{position:absolute;top:-9px;right:46px;background:linear-gradient(90deg,#c43bff,#8b2be2);border-radius:99px;padding:1px 10px;font-size:11px}.ofb b{flex:1;font-size:13px;font-weight:600}.chv{font-size:20px;color:#cfd6ff}
+.av{border:2px solid #1fd96b;border-radius:18px;background:linear-gradient(#0a2a2a,#06161e);box-shadow:0 0 16px #1fd96b66;margin-bottom:12px;overflow:hidden}
+.av.bz{border-color:#3b82f6;box-shadow:0 0 16px #3b82f666;background:linear-gradient(#0a1f4a,#06101e)}.av.no{border-color:#6b7090;box-shadow:none;background:#12162a}
+.avt{display:flex;align-items:center;gap:10px;padding:12px 10px;position:relative}.ck{width:46px;height:46px;border-radius:50%;border:3px solid #1fd96b;display:flex;align-items:center;justify-content:center;font-size:24px;color:#1fd96b;flex:none}
+.av.bz .ck{border-color:#3b82f6;color:#3b82f6}.av.no .ck{border-color:#6b7090;color:#6b7090}
+.avt h3{margin:0;font-size:15px}.avt p{margin:2px 0 0;font-size:12px;color:#cdd6ff}.live{position:absolute;top:6px;left:8px;background:#0f3a24;border:1px solid #1fd96b;border-radius:99px;padding:0 8px;font-size:10px;display:flex;gap:4px;align-items:center}.live:before{content:"";width:8px;height:8px;border-radius:50%;background:#1fd96b}
+.st3{display:flex;border-top:1px solid #1fd96b55}.st3>div{flex:1;text-align:center;padding:6px 0;font-size:11px;border-inline-start:1px solid #1fd96b33}.st3>div:first-child{border:0}.st3 b{display:block;font-size:18px}
+.d{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:3px}
+.pn{border:1.5px solid #2a5bff;border-radius:18px;background:linear-gradient(#0a1448,#070d30);box-shadow:0 0 14px #1f4bd055;padding:10px;margin-bottom:12px}
+.ph{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:16px;margin-bottom:8px}
+.more{background:#1a2a7a;border-radius:99px;padding:2px 10px;font-size:11px;width:auto}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.tile{border:1px solid #2a3aa0;border-radius:12px;background:linear-gradient(#0e1a5a,#08103a);padding:5px 2px;text-align:center;font-size:10px}.tile.hi{border-color:#2bd4ff;box-shadow:0 0 12px #2bd4ffaa}
+.cn{width:100%;height:54px}.tile b{display:block;font-size:10px;margin:2px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{border-radius:99px;padding:3px 2px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap}.chip i{font-style:normal}
+.chip.fr{background:linear-gradient(#25d366,#0f9d4a)}.chip.bz{background:linear-gradient(#f5a524,#c97a0a)}.chip.off{background:linear-gradient(#e0384a,#9d1424)}.chip.ps{background:#5a5f8f}
+.tmr{font-size:10px;margin-top:3px;font-variant-numeric:tabular-nums}
+.bkc{display:flex;gap:8px;align-items:center}.lgo{width:78px;flex:none;text-align:center;filter:drop-shadow(0 0 10px #2b8cff)}.lgo .p4{font-size:36px;font-weight:900;font-style:italic;color:#cfe8ff;line-height:1;text-shadow:0 0 12px #2b8cff}.lgo .sl{font-size:16px;font-weight:700}
+.fl{flex:1;min-width:0}.fi{display:flex;align-items:center;gap:8px;border:1px solid #2a5bff;border-radius:99px;background:#08103a;padding:0 12px;margin-bottom:6px}.fi input{background:none;flex:1;min-width:0;padding:9px 0;outline:0}.fi span{opacity:.8}
+.seg{display:flex;gap:6px;margin-bottom:6px}.seg button{flex:1;background:#08103a;border:1px solid #2a5bff;border-radius:99px;padding:8px 2px;font-size:12px}.seg button.on{background:linear-gradient(90deg,#1f6bff,#8b2be2);border-color:transparent}
+.act{display:flex;gap:6px}.snd{flex:1.6;background:linear-gradient(90deg,#1f6bff,#8b2be2);border-radius:99px;padding:10px;font-weight:700;box-shadow:0 0 12px #6a4bff}.out{flex:1;background:#3a3f5a;border-radius:99px;padding:10px}
+.gb{background:#fff;color:#222;border-radius:99px;padding:10px;width:100%;font-weight:700}
+.bkr{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#0a1450;border:1px solid #2a5bff;border-radius:14px;padding:8px;margin-top:6px;font-size:12px}
+.who{flex:1.1;border-inline-end:1px solid #2a5bff;padding-inline-end:6px;display:flex;gap:6px;align-items:center;min-width:0}.who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mid{flex:1.2;text-align:center}.mid b{display:block}.pill{padding:3px 8px;border-radius:99px;font-weight:700;font-size:11px;white-space:nowrap}
+.gr{background:#0f3a24;color:#4cf08f;border:1px solid #1fd96b}.rd{background:#3a1020;color:#ff6b6b;border:1px solid #e0384a}.gy{background:#2a3050;color:#aab4e6}.bl{background:#0f2a6a;color:#8fc0ff;border:1px solid #3b82f6}
+.nt{width:100%;background:#16276b;border-radius:10px;padding:5px 8px;color:#cfe0ff}
+.ft{margin:6px 0 0;display:flex;align-items:center;gap:6px;padding:12px 10px calc(12px + env(safe-area-inset-bottom,0px));border-top:2px solid #2a5bff;background:linear-gradient(#0a1040,#070a24);box-shadow:0 -4px 20px #1f4bd055;font-size:13px}
+.ft div{flex:1;text-align:center;border:1px solid #2a5bff;border-radius:99px;padding:6px}.ft s{text-decoration:none;font-size:22px;font-weight:700;text-shadow:0 0 8px currentColor}
+.ov{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.ov>div{background:#0e1650;border:1px solid #3b5bff;border-radius:20px;padding:16px;width:100%;max-width:400px;text-align:center}
+.ov button{width:100%;margin-top:8px;background:#1f6bff;border-radius:12px;padding:11px}.ov button.g{background:#3a3f5a}.ov input{width:100%;background:#08103a;border:1px solid #2a5bff;border-radius:12px;padding:12px;font-size:22px;text-align:center;color:#fff}
+.ai{background:#16276b;border-radius:12px;padding:8px;margin-bottom:8px}.ai p{margin:4px 0 0}.dr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a3aa0;font-size:14px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#303a66"/><stop offset="1" stop-color="#090d20"/></linearGradient></defs>
+<symbol id="cs" viewBox="0 0 120 150"><polygon points="24,8 80,2 98,108 42,122" fill="url(#g1)" stroke="#5a6cc0" stroke-width="1.6"/><polygon points="80,2 98,108 104,104 88,0" fill="#151b3a"/><line x1="32" y1="36" x2="90" y2="28" stroke="#2b8cff" stroke-width="2.4"/>
+<g transform="translate(16 94)"><path d="M6 14q0-12 14-12h44q14 0 14 12l4 22q2 12-10 12-8 0-12-10H34q-4 10-12 10-12 0-10-12z" fill="#0c1022" stroke="#7a8cff" stroke-width="1.6"/><circle cx="26" cy="19" r="6" fill="#161c3a" stroke="#7a8cff"/><circle cx="58" cy="25" r="6" fill="#161c3a" stroke="#7a8cff"/><circle cx="62" cy="11" r="2.2" fill="#2bd4ff"/><circle cx="68" cy="16" r="2.2" fill="#ff4d8d"/><circle cx="56" cy="16" r="2.2" fill="#4cf08f"/><circle cx="62" cy="21" r="2.2" fill="#a78bff"/></g></symbol></svg>
+<header class="hero" id="s-home"><button class="hb" onclick="$('#sb').style.display=$('#sb').style.display==='none'?'flex':'none'"><i></i><i></i><i></i></button>
+<svg class="cons"><use href="#cs"/></svg><div class="ttl"><span class="crn">👑</span><div id="t1">كيرو</div><div id="t2">بلايستيشن</div></div><div class="tag">العب .. احجز .. استمتع</div>
+<div class="shp"><span style="color:#2bd4ff">△</span><span style="color:#ff4d8d">○</span><span style="color:#4d8dff">✕</span><span style="color:#b45bff">□</span></div><div class="gon">GAME<br>ON</div>
+<button class="inst" id="inst" onclick="install()">⬇️ ثبّت التطبيق</button></header>
+<div class="wrap"><aside id="sb"><button class="on" id="n0" onclick="jump('s-home')"><i>🏠</i>الرئيسية</button><button id="n1" onclick="jump('s-dev')"><i>🎮</i>الأجهزة</button><button id="n2" onclick="jump('s-bk')"><i>📅</i>احجز</button><button id="n3" onclick="jump('s-my')"><i>📝</i>حجوزاتي</button><button id="n4" onclick="jump('ofb')"><i>🎁</i>العروض</button><div class="sp"></div><button id="nx" onclick="U?au.signOut():login()"><i>↪</i><span id="nxt">دخول</span></button></aside>
+<main><div class="ofb" id="ofb" onclick="nextOf()" style="display:none"><span class="gf">🎁</span><span class="otag">عرض اليوم</span><b id="oft"></b><span class="chv">‹</span></div>
+<div class="av" id="av"><div class="avt"><div class="ck">…</div><div><h3>جاري التحميل</h3></div></div></div>
+<section class="pn" id="s-dev"><div class="ph"><span>🎮 الأجهزة</span><button class="more" onclick="more()">تفاصيل أكثر ‹</button></div><div class="grid" id="grid"></div></section>
+<section class="pn" id="s-bk"></section>
+<section class="pn" id="s-my"><div class="ph"><span>🕒 حجوزاتي الأخيرة</span></div><div id="myl"></div></section></main></div>
+<footer class="ft"><s style="color:#2bd4ff">△</s><s style="color:#ff4d8d">○</s><div>💜 <span id="ftx">كيرو بلايستيشن .. دائمًا معك</span></div><s style="color:#4d8dff">✕</s><s style="color:#b45bff">□</s></footer>
+<div class="ov" id="al"></div><div class="ov" id="tm"><div><h3>🕒 حدد وقت الحجز</h3><input id="tmi" type="time"><button onclick="okTime()">تأكيد</button><button class="g" onclick="noTime()">إلغاء</button></div></div>
+<script>
+firebase.initializeApp(FIREBASE_CONFIG);const fs=firebase.firestore(),au=firebase.auth();
+const $=s=>document.querySelector(s),p2=n=>String(n).padStart(2,'0');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toEn=s=>String(s).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/\D/g,'').slice(0,11);
+let B=null,U=null,C=null,MB=[],u1=null,u2=null,AC=null,AQ=[],MODE='now',PT='',OI=0,DP=null;const AL=new Set();
+const fmt=ms=>{const s=Math.max(0,Math.floor(ms/1e3));return p2(Math.floor(s/60))+':'+p2(s%60)};
+const hms=ms=>{const s=Math.max(0,Math.floor(ms/1e3));return p2(Math.floor(s/3600))+':'+p2(Math.floor(s%3600/60))+':'+p2(s%60)};
+const nm=id=>((B.devs.filter(d=>d.id===id)[0])||{n:'جهاز'}).n;
+const run=id=>B.runs.filter(x=>x.dev===id)[0];
+const left=id=>{const r=run(id);return r?(r.pa?{pa:1,ms:r.rem}:{ms:r.end-Date.now(),end:r.end}):null};
+const anyFree=()=>B.devs.some(d=>!d.off&&!run(d.id));
+const firstFree=()=>B.devs.filter(d=>!d.off&&!run(d.id))[0];
+const soon=()=>B.runs.filter(r=>!r.pa&&B.devs.some(d=>d.id===r.dev&&!d.off)).sort((a,b)=>a.end-b.end)[0];
+const jump=id=>{const e=document.getElementById(id)||$('#s-home');e.scrollIntoView({behavior:'smooth',block:'start'})};
+function beep(){try{AC=AC||new AudioContext();AC.resume();[0,.25,.5].forEach(d=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=880;g.gain.value=.25;o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+d);o.stop(AC.currentTime+d+.15)})}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,100,300,100,300])}catch(e){}}
+document.addEventListener('click',()=>{try{AC=AC||new AudioContext();AC.resume()}catch(e){}});
+function alertBox(t,m){AQ.push(`<div class="ai"><b>🔔 ${t}</b><p>${m}</p></div>`);$('#al').innerHTML=`<div>${AQ.join('')}<button onclick="closeAl()">تمام</button></div>`;$('#al').style.display='flex';beep()}
+function closeAl(){AQ=[];$('#al').style.display='none'}
+function nextOf(){OI++;draw()}
+function setMode(m){if(m==='now'){MODE='now';ui2()}else{$('#tmi').value=PT||'';$('#tm').style.display='flex'}}
+function okTime(){const v=$('#tmi').value;if(!v)return;PT=v;MODE='time';$('#tm').style.display='none';ui2()}
+function noTime(){$('#tm').style.display='none';if(!PT)MODE='now';ui2()}
+function ui2(){const a=$('#m1'),b=$('#m2');if(!a)return;a.classList.toggle('on',MODE==='now');b.classList.toggle('on',MODE==='time');
+if(PT){const h=PT.split(':').map(Number),d=new Date();d.setHours(h[0],h[1]);b.textContent='🕒 '+d.toLocaleTimeString('ar-EG',{hour:'numeric',minute:'2-digit'})}else b.textContent='🕒 تحديد ميعاد'}
+function more(){if(!B)return;$('#al').innerHTML='<div><h3>🎮 تفاصيل الأجهزة</h3>'+B.devs.map(d=>{const l=left(d.id);return `<div class="dr"><b>${esc(d.n)}</b><span>${d.off?'🚫 معطل':l?(l.pa?'⏸ متوقف مؤقتًا':'⏳ '+hms(l.ms)):'✅ فاضي'}</span></div>`}).join('')+'<button onclick="closeAl()">تمام</button></div>';$('#al').style.display='flex'}
+function install(){if(DP){DP.prompt();DP.userChoice.finally(()=>{DP=null});return}
+const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);$('#al').innerHTML='<div><div style="font-size:40px">📲</div><h3>تثبيت التطبيق</h3><p>'+(ios?'اضغط زرار المشاركة ⬆️ في أسفل المتصفح، ثم اختار «إضافة إلى الشاشة الرئيسية».':'افتح قايمة المتصفح ⋮ ثم اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».')+'</p><button onclick="closeAl()">تمام</button></div>';$('#al').style.display='flex'}
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+if(!standalone)$('#inst').style.display='block';
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});addEventListener('appinstalled',()=>{$('#inst').style.display='none'});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+function info(b){let l=null,name='';const f=firstFree();if(!f){const a=soon();if(a){l={ms:a.end-Date.now(),end:a.end};name=nm(a.dev)}}else name=f.n;return{l,name,free:!!f}}
+function watch(){if(!B||!U)return;const now=Date.now();
+MB.filter(b=>b.s==='wait').forEach(b=>{const r=b.at-now;if(r>18e5||r<-36e5)return;const i=info(b),n=i.name?' ('+esc(i.name)+')':'';
+if(r<=6e5&&r>0&&!AL.has('t'+b.id)){AL.add('t'+b.id);if(!i.free)AL.add('b'+b.id);alertBox('حجزك بعد 10 دقايق',i.free?'في جهاز فاضي'+n+'، اتحرك للمكان دلوقتي.':'كل الأجهزة مشغولة. تابع الصفحة وهنبلغك.')}
+if(i.l&&!i.l.pa&&i.l.ms>0&&i.l.ms<=3e5){const k='f'+b.id+':'+i.l.end;if(!AL.has(k)){AL.add(k);AL.add('b'+b.id);alertBox('باقي 5 دقائق','على انتهاء وقت أقرب جهاز'+n+'. تابع الصفحة: لو الوقت اتزوّد هيظهر هنا، ولو لأ اتحرك للمحل.')}}
+if(i.free&&AL.has('b'+b.id)&&!AL.has('z'+b.id)){AL.add('z'+b.id);alertBox('في جهاز فاضي','اتحرك للمكان دلوقتي.')}})}
+function row(b){const now=Date.now(),r=b.at-now,D=new Date(b.at),tm=D.toLocaleTimeString('ar-EG',{hour:'numeric',minute:'2-digit'});
+const day=D.toDateString()===new Date().toDateString()?'':D.toLocaleDateString('ar-EG',{day:'numeric',month:'short'})+' - ';
+let p,nt='';if(b.s==='wait'){if(r>-36e5){p=`<span class="pill bl">منتظر 🕒</span>`;if(r<=6e5){const i=info(b);nt=`<div class="nt">${i.free?'✅ في جهاز فاضي، اتحرك للمكان دلوقتي':'⏳ كل الأجهزة مشغولة'+(i.l&&!i.l.pa?'، أقرب جهاز يفضى بعد '+fmt(i.l.ms):'')+'. تابع الصفحة'}</div>`}}else p='<span class="pill gy">انتهى الميعاد</span>'}
+else{const m={came:['حضرت ✓','gr'],noshow:['لم تحضر ✕','rd'],cancel:['ملغي','gy']}[b.s]||['','gy'];p=`<span class="pill ${m[1]}">${m[0]}</span>`}
+return `<div class="bkr"><div class="who">👤<span>${esc(b.name)}</span></div><div class="mid"><b>أول جهاز فاضي</b><span>🕒 ${day}${tm}</span></div>${p}${nt}</div>`}
+function draw(){if(!B)return;const now=Date.now(),D=B.devs;
+const sh=(B.shop||'كيرو بلايستيشن').trim(),w=sh.split(/\s+/);$('#t1').textContent=w[0];$('#t2').textContent=w.slice(1).join(' ');$('#ftx').textContent=sh+' .. دائمًا معك';
+const O=(B.offers||[]).slice().sort((x,y)=>y.t-x.t);if(O.length){OI%=O.length;$('#ofb').style.display='flex';$('#oft').textContent=O[OI].txt}else $('#ofb').style.display='none';
+const tot=D.length,fr=D.filter(d=>!d.off&&!run(d.id)).length,bz=D.filter(d=>!d.off&&run(d.id)).length,a=soon();let cls='',ic='✓',t,s;
+if(fr){t='في جهاز فاضي دلوقتي';s='تقدر تحجز وتبدأ العب فورًا'}else if(a){cls=' bz';ic='⏳';t='أقرب جهاز يفضى: '+esc(nm(a.dev));s='بعد '+fmt(a.end-now)}else{cls=' no';ic='⛔';t='مفيش جهاز متاح حاليًا';s='حاول بعد شوية'}
+$('#av').className='av'+cls;$('#av').innerHTML=`<div class="avt"><div class="ck">${ic}</div><div><h3>${t}</h3><p>${s}</p></div><span class="live">مباشر</span></div><div class="st3"><div>كل الأجهزة<b>${tot}</b></div><div><span class="d" style="background:#1fd96b"></span>فاضي<b>${fr}</b></div><div><span class="d" style="background:#f5a524"></span>مشغول<b>${bz}</b></div></div>`;
+$('#grid').innerHTML=D.map(d=>{const l=left(d.id);let c,t2,i2,tm='';if(d.off){c='off';t2='معطل';i2='⊘'}else if(l&&l.pa){c='ps';t2='متوقف مؤقتًا';i2='❚❚'}else if(l){c='bz';t2='مشغول';i2='⊕';tm=`<div class="tmr">${hms(l.ms)}</div>`}else{c='fr';t2='فاضي';i2='✓'}
+return `<div class="tile ${c==='fr'?'hi':''}"><svg class="cn"><use href="#cs"/></svg><b>${esc(d.n)}</b><div class="chip ${c}">${t2} <i>${i2}</i></div>${tm}</div>`}).join('');
+const base=((D[0]&&D[0].n)||'PS4 Slim').replace(/\s*#?\d+\s*$/,'').split(' ');const l1=$('#l1');if(l1){l1.textContent=base[0];$('#l2').textContent=base.slice(1).join(' ')}
+const L=MB.slice().sort((x,y)=>y.at-x.at).slice(0,5);$('#myl').innerHTML=U?(L.map(row).join('')||'<div class="mu" style="font-size:13px;color:#9aa3d0">مفيش حجوزات لسه</div>'):'<div style="font-size:13px;color:#9aa3d0">سجّل دخولك بحساب Google عشان تشوف حجوزاتك.</div>';
+$('#nxt').textContent=U?'خروج':'دخول';watch()}
+function ui(){const a=$('#s-bk');
+if(!U){a.dataset.u='';a.innerHTML=`<div class="ph"><span>📅 احجز جلستك</span></div><div class="bkc"><div class="lgo"><div class="p4" id="l1">PS4</div><div class="sl" id="l2">Slim</div></div><div class="fl"><p style="margin:0 0 8px;font-size:13px">سجّل دخولك بحساب Google عشان تحجز، بسهولة وأمان.</p><button class="gb" onclick="login()"><b style="color:#4285f4">G</b> الدخول بحساب Google</button></div></div>`;draw();return}
+if(C&&C.banned){a.dataset.u='';a.innerHTML='<div class="ph"><span>📅 احجز جلستك</span></div><div style="font-size:14px">الحجز متوقف لحسابك. تواصل مع المحل.</div><div class="act" style="margin-top:8px"><button class="out" onclick="au.signOut()">خروج ↪</button></div>';return}
+if(a.dataset.u===U.uid&&$('#bn'))return;a.dataset.u=U.uid;
+a.innerHTML=`<div class="ph"><span>📅 احجز جلستك</span></div><div class="bkc"><div class="lgo"><div class="p4" id="l1">PS4</div><div class="sl" id="l2">Slim</div></div><div class="fl"><div class="fi"><span>👤</span><input id="bn" placeholder="اسمك" value="${esc((C&&C.name)||U.displayName||'')}"></div><div class="fi"><span>📞</span><input id="bp" placeholder="رقم الموبايل (11 رقم)" inputmode="numeric" maxlength="11" pattern="[0-9]*" value="${esc(toEn((C&&C.ph)||''))}" oninput="this.value=toEn(this.value)"></div><div class="seg"><button id="m1" class="on" onclick="setMode('now')">⚡ حجز دلوقتي</button><button id="m2" onclick="setMode('time')">🕒 تحديد ميعاد</button></div><div class="act"><button class="snd" onclick="book()">إرسال الحجز ✈</button><button class="out" onclick="au.signOut()">خروج ↪</button></div></div></div>`;ui2();draw()}
+function login(){au.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(()=>alert('تعذر تسجيل الدخول'))}
+async function book(){const n=$('#bn').value.trim(),ph=toEn($('#bp').value);
+if(!n)return alert('اكتب اسمك');if(!/^\d{11}$/.test(ph))return alert('رقم الموبايل لازم يكون 11 رقم بالظبط');
+let at=Date.now();if(MODE==='time'){if(!PT)return alert('حدد الميعاد');const h=PT.split(':').map(Number),d=new Date();d.setHours(h[0],h[1],0,0);if(d.getTime()<Date.now()-18e5)d.setDate(d.getDate()+1);at=d.getTime()}
+const o={dev:'any',name:n.slice(0,50),ph,at,by:'عميل (الموقع)',s:'wait',uid:U.uid,email:U.email};let ref;
+try{ref=await fs.collection('book').add(o);await fs.doc('cust/'+U.uid).update({name:o.name,ph:o.ph})}catch(e){return alert('تعذر إرسال الحجز')}
+if(MODE==='now'){const f=firstFree();if(f)alertBox('تم الحجز ✅','أول جهاز فاضي: '+esc(f.n)+'. اتحرك للمكان دلوقتي.');else{AL.add('b'+ref.id);const a=soon();alertBox('تم الحجز ✅',a?'كل الأجهزة مشغولة. أقرب جهاز يفضى: '+esc(nm(a.dev))+' بعد '+fmt(a.end-Date.now())+'. تابع الصفحة وهنبلغك.':'كل الأجهزة مش متاحة حاليًا.')}}
+else alertBox('تم الحجز ✅','هنبلغك قبل ميعادك بـ10 دقايق. تابع الصفحة.')}
+au.onAuthStateChanged(async u=>{U=u;if(u1)u1();if(u2)u2();u1=u2=null;C=null;MB=[];
+if(u){try{const r=fs.doc('cust/'+u.uid),s=await r.get();if(!s.exists)await r.set({name:(u.displayName||'').slice(0,50),email:u.email,ph:'',t:Date.now(),banned:false});
+u1=r.onSnapshot(x=>{C=x.data();ui()});u2=fs.collection('book').where('uid','==',u.uid).onSnapshot(q=>{MB=q.docs.map(d=>({id:d.id,...d.data()}));draw()})}catch(e){}}
+ui();draw()});
+fs.doc('pub/board').onSnapshot(s=>{if(s.exists){B=s.data();draw()}else $('#av').innerHTML='<div class="avt"><div class="ck">⛔</div><div><h3>المحل لسه مش شغال</h3></div></div>'});
+setInterval(draw,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw()});
+addEventListener('scroll',()=>{const ids=['s-home','s-dev','s-bk','s-my'];let c=0;ids.forEach((id,i)=>{const e=document.getElementById(id);if(e&&e.getBoundingClientRect().top<innerHeight*.45)c=i});for(let k=0;k<5;k++)$('#n'+k).classList.toggle('on',k===c)},{passive:true});
+ui();
+</script></body></html>
